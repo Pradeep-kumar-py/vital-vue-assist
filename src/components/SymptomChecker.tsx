@@ -163,14 +163,14 @@ const SymptomChecker: React.FC = () => {
   };
 
   return (
-    <div className="container py-8 space-y-8">
+    <div className="container py-6 sm:py-8 space-y-6 sm:space-y-8 px-4">
       {/* Header */}
       <div className="text-center space-y-4">
-        <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-primary rounded-full mb-4">
-          <Stethoscope className="h-8 w-8 text-white" />
+        <div className="inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 bg-gradient-primary rounded-full mb-4">
+          <Stethoscope className="h-6 w-6 sm:h-8 sm:w-8 text-white" />
         </div>
-        <h1 className="text-4xl font-bold">{t('symptomCheckerTitle')}</h1>
-        <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold">{t('symptomCheckerTitle')}</h1>
+        <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
           Describe your symptoms and get AI-powered health insights and recommendations.
         </p>
       </div>
@@ -231,7 +231,7 @@ const SymptomChecker: React.FC = () => {
         <div className="max-w-4xl mx-auto space-y-6">
           <h2 className="text-2xl font-bold text-center">{t('suggestedConditions')}</h2>
           
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
             {suggestions.map((condition, index) => (
               <Card key={index} className="medical-card hover:shadow-medical transition-all duration-300">
                 <CardHeader>

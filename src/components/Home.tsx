@@ -77,17 +77,17 @@ const Home: React.FC = () => {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="bg-gradient-healing py-20 text-white">
-        <div className="container text-center space-y-8">
-          <div className="inline-flex items-center justify-center w-20 h-20 bg-white/20 rounded-full mb-8">
-            <Heart className="h-10 w-10" />
+        <div className="container text-center space-y-6 sm:space-y-8 px-4">
+          <div className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-white/20 rounded-full mb-6 sm:mb-8">
+            <Heart className="h-8 w-8 sm:h-10 sm:w-10" />
           </div>
-          <h1 className="text-5xl md:text-6xl font-bold">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
             {t('welcomeTitle')}
           </h1>
-          <p className="text-xl md:text-2xl opacity-90 max-w-3xl mx-auto">
+          <p className="text-lg sm:text-xl md:text-2xl opacity-90 max-w-3xl mx-auto px-4">
             {t('welcomeSubtitle')}
           </p>
-          <p className="text-lg opacity-80 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg opacity-80 max-w-2xl mx-auto px-4">
             {t('welcomeDescription')}
           </p>
           <Button size="lg" variant="secondary" className="mt-8">
@@ -100,30 +100,30 @@ const Home: React.FC = () => {
       {/* Features Grid */}
       <section className="py-20">
         <div className="container space-y-12">
-          <div className="text-center space-y-4">
-            <h2 className="text-3xl md:text-4xl font-bold">Complete Healthcare Solution</h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <div className="text-center space-y-4 px-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">Complete Healthcare Solution</h2>
+            <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">
               Everything you need to manage your health in one comprehensive platform
             </p>
           </div>
 
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-4 sm:gap-6 md:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
             {features.map((feature, index) => {
               const Icon = feature.icon;
               return (
-                <Link key={index} to={feature.path}>
+                <Link key={index} to={feature.path} className="block">
                   <Card className="medical-card hover:shadow-medical transition-all duration-300 h-full group">
-                    <CardHeader>
-                      <div className={`w-12 h-12 rounded-lg bg-gradient-to-r ${feature.color} flex items-center justify-center mb-4`}>
-                        <Icon className="h-6 w-6 text-white" />
+                    <CardHeader className="pb-3">
+                      <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-gradient-to-r ${feature.color} flex items-center justify-center mb-3`}>
+                        <Icon className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
                       </div>
-                      <CardTitle className="group-hover:text-primary transition-colors">
+                      <CardTitle className="group-hover:text-primary transition-colors text-base sm:text-lg">
                         {feature.title}
                       </CardTitle>
                     </CardHeader>
-                    <CardContent>
-                      <p className="text-muted-foreground">{feature.description}</p>
-                      <div className="flex items-center mt-4 text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+                    <CardContent className="pt-0">
+                      <p className="text-muted-foreground text-sm sm:text-base">{feature.description}</p>
+                      <div className="flex items-center mt-3 sm:mt-4 text-primary opacity-0 group-hover:opacity-100 transition-opacity">
                         <span className="text-sm font-medium">Explore</span>
                         <ArrowRight className="ml-2 h-4 w-4" />
                       </div>
@@ -138,8 +138,8 @@ const Home: React.FC = () => {
 
       {/* Stats Section */}
       <section className="py-20 bg-muted/20">
-        <div className="container">
-          <div className="grid gap-8 md:grid-cols-4 text-center">
+        <div className="container px-4">
+          <div className="grid gap-6 sm:gap-8 grid-cols-2 md:grid-cols-4 text-center">
             {[
               { icon: Users, label: 'Active Users', value: '50K+' },
               { icon: Heart, label: 'Health Assessments', value: '200K+' },
