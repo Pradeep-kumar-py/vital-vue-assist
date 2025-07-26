@@ -15,7 +15,9 @@ import {
   ArrowRight,
   CheckCircle,
   Users,
-  Shield
+  Shield,
+  DollarSign,
+  HandHeart
 } from 'lucide-react';
 
 const Home: React.FC = () => {
@@ -132,6 +134,99 @@ const Home: React.FC = () => {
                 </Link>
               );
             })}
+          </div>
+        </div>
+      </section>
+
+      {/* Donation Section */}
+      <section className="py-20 bg-gradient-to-r from-primary/5 to-secondary/5">
+        <div className="container px-4">
+          <div className="max-w-4xl mx-auto text-center space-y-8">
+            <div className="space-y-4">
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-full mb-4">
+                <HandHeart className="h-8 w-8 text-primary" />
+              </div>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">Support Healthcare for Everyone</h2>
+              <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">
+                Help us provide accessible healthcare solutions to underserved communities around the world
+              </p>
+            </div>
+
+            <div className="grid gap-6 sm:gap-8 grid-cols-1 md:grid-cols-3">
+              <Card className="medical-card hover:shadow-medical transition-all duration-300 group">
+                <CardHeader className="text-center">
+                  <DollarSign className="h-8 w-8 text-primary mx-auto mb-2" />
+                  <CardTitle className="text-lg">$25</CardTitle>
+                </CardHeader>
+                <CardContent className="text-center space-y-4">
+                  <p className="text-muted-foreground">Provides basic health screening for 5 people</p>
+                  <Button className="w-full group-hover:shadow-lg transition-all">
+                    Donate $25
+                  </Button>
+                </CardContent>
+              </Card>
+
+              <Card className="medical-card hover:shadow-medical transition-all duration-300 group border-primary/20">
+                <CardHeader className="text-center">
+                  <div className="relative">
+                    <DollarSign className="h-8 w-8 text-primary mx-auto mb-2" />
+                    <span className="absolute -top-2 -right-2 bg-primary text-primary-foreground text-xs px-2 py-1 rounded-full">Popular</span>
+                  </div>
+                  <CardTitle className="text-lg">$100</CardTitle>
+                </CardHeader>
+                <CardContent className="text-center space-y-4">
+                  <p className="text-muted-foreground">Funds complete healthcare package for 10 families</p>
+                  <Button className="w-full group-hover:shadow-lg transition-all">
+                    Donate $100
+                  </Button>
+                </CardContent>
+              </Card>
+
+              <Card className="medical-card hover:shadow-medical transition-all duration-300 group">
+                <CardHeader className="text-center">
+                  <DollarSign className="h-8 w-8 text-primary mx-auto mb-2" />
+                  <CardTitle className="text-lg">$500</CardTitle>
+                </CardHeader>
+                <CardContent className="text-center space-y-4">
+                  <p className="text-muted-foreground">Sponsors medical equipment for remote clinics</p>
+                  <Button className="w-full group-hover:shadow-lg transition-all">
+                    Donate $500
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
+
+            <div className="bg-background/80 backdrop-blur rounded-lg border p-6 sm:p-8">
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
+                <div className="text-left space-y-2">
+                  <h3 className="text-lg sm:text-xl font-semibold">Custom Donation</h3>
+                  <p className="text-muted-foreground">Choose your own amount to make a difference</p>
+                </div>
+                <div className="flex items-center gap-4">
+                  <div className="flex items-center">
+                    <span className="text-lg font-medium mr-2">$</span>
+                    <input 
+                      type="number" 
+                      placeholder="100" 
+                      className="w-24 px-3 py-2 border rounded-md text-center"
+                      min="1"
+                    />
+                  </div>
+                  <Button variant="outline" className="whitespace-nowrap">
+                    Donate Now
+                  </Button>
+                </div>
+              </div>
+            </div>
+
+            <div className="text-center space-y-2">
+              <p className="text-sm text-muted-foreground">
+                🛡️ Secure donations powered by Stripe • 💝 100% goes to healthcare initiatives
+              </p>
+              <p className="text-xs text-muted-foreground">
+                Your donation is tax-deductible and you'll receive a receipt via email
+              </p>
+            </div>
           </div>
         </div>
       </section>
