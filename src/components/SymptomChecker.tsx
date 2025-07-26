@@ -4,7 +4,7 @@ import { Button } from './ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Textarea } from './ui/textarea';
 import { Badge } from './ui/badge';
-import { Stethoscope, AlertCircle, Info, Thermometer, Search, Mic, MicOff } from 'lucide-react';
+import { Stethoscope, AlertCircle, Info, Thermometer, Search, Mic, MicOff, UserCheck, Calendar } from 'lucide-react';
 import { toast } from '../hooks/use-toast';
 
 interface SuggestedCondition {
@@ -12,6 +12,8 @@ interface SuggestedCondition {
   probability: number;
   severity: 'low' | 'medium' | 'high';
   recommendations: string[];
+  specialists: string[];
+  urgency: 'routine' | 'soon' | 'urgent';
 }
 
 const SymptomChecker: React.FC = () => {
@@ -31,7 +33,9 @@ const SymptomChecker: React.FC = () => {
         'Rest and stay hydrated',
         'Consider over-the-counter pain relievers',
         'Monitor symptoms for 7-10 days'
-      ]
+      ],
+      specialists: ['General Physician', 'Family Medicine'],
+      urgency: 'routine'
     },
     {
       name: 'Seasonal Allergies',
@@ -41,7 +45,9 @@ const SymptomChecker: React.FC = () => {
         'Take antihistamines',
         'Avoid known allergens',
         'Consider nasal decongestants'
-      ]
+      ],
+      specialists: ['Allergist', 'ENT Specialist', 'General Physician'],
+      urgency: 'routine'
     },
     {
       name: 'Viral Infection',
@@ -51,7 +57,9 @@ const SymptomChecker: React.FC = () => {
         'Get plenty of rest',
         'Stay isolated to prevent spread',
         'Consult doctor if symptoms worsen'
-      ]
+      ],
+      specialists: ['General Physician', 'Internal Medicine'],
+      urgency: 'soon'
     },
     {
       name: 'Migraine',
@@ -61,7 +69,22 @@ const SymptomChecker: React.FC = () => {
         'Rest in a dark, quiet room',
         'Apply cold compress',
         'Consider prescribed medications'
-      ]
+      ],
+      specialists: ['Neurologist', 'General Physician'],
+      urgency: 'soon'
+    },
+    {
+      name: 'Hypertension',
+      probability: 55,
+      severity: 'high',
+      recommendations: [
+        'Monitor blood pressure regularly',
+        'Reduce sodium intake',
+        'Exercise regularly',
+        'Take prescribed medications'
+      ],
+      specialists: ['Cardiologist', 'Internal Medicine'],
+      urgency: 'urgent'
     }
   ];
 
@@ -162,6 +185,20 @@ const SymptomChecker: React.FC = () => {
     }
   };
 
+  const getUrgencyColor = (urgency: string) => {
+    switch (urgency) {
+      case 'routine': return 'text-muted-foreground';
+      case 'soon': return 'text-warning';
+      case 'urgent': return 'text-destructive';
+      default: return 'text-muted-foreground';
+    }
+  };
+
+  const bookAppointment = (specialists: string[]) => {
+    // Navigate to appointment page with specialist pre-selected
+    window.location.href = '/appointments';
+  };
+
   return (
     <div className="container py-6 sm:py-8 space-y-6 sm:space-y-8 px-4">
       {/* Header */}
@@ -254,16 +291,43 @@ const SymptomChecker: React.FC = () => {
                 </CardHeader>
                 
                 <CardContent>
-                  <div className="space-y-3">
-                    <h4 className="font-semibold text-sm">Recommendations:</h4>
-                    <ul className="space-y-2">
-                      {condition.recommendations.map((rec, idx) => (
-                        <li key={idx} className="text-sm flex items-start space-x-2">
-                          <span className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0" />
-                          <span>{rec}</span>
-                        </li>
-                      ))}
-                    </ul>
+                  <div className="space-y-4">
+                    <div>
+                      <h4 className="font-semibold text-sm mb-2">Recommendations:</h4>
+                      <ul className="space-y-2">
+                        {condition.recommendations.map((rec, idx) => (
+                          <li key={idx} className="text-sm flex items-start space-x-2">
+                            <span className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0" />
+                            <span>{rec}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div>
+                      <h4 className="font-semibold text-sm mb-2 flex items-center gap-2">
+                        <UserCheck className="h-4 w-4" />
+                        Suggested Specialists:
+                      </h4>
+                      <div className="flex flex-wrap gap-1 mb-3">
+                        {condition.specialists.map((specialist, idx) => (
+                          <Badge key={idx} variant="outline" className="text-xs">
+                            {specialist}
+                          </Badge>
+                        ))}
+                      </div>
+                      <p className={`text-xs mb-3 ${getUrgencyColor(condition.urgency)}`}>
+                        Urgency: <span className="capitalize font-medium">{condition.urgency}</span>
+                      </p>
+                      <Button 
+                        size="sm" 
+                        className="w-full" 
+                        onClick={() => bookAppointment(condition.specialists)}
+                      >
+                        <Calendar className="h-4 w-4 mr-2" />
+                        Book Appointment
+                      </Button>
+                    </div>
                   </div>
                 </CardContent>
               </Card>

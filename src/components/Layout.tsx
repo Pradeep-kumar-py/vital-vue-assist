@@ -12,9 +12,13 @@ import {
   TrendingUp,
   Globe,
   Menu,
-  X
+  X,
+  MapPin,
+  ShoppingCart,
+  Shield
 } from 'lucide-react';
 import { Button } from './ui/button';
+import { ThemeToggle } from './ui/theme-toggle';
 import { useState } from 'react';
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -31,6 +35,9 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     { path: '/teleconsultation', icon: Video, label: t('teleconsultation') },
     { path: '/alerts', icon: AlertTriangle, label: t('alerts') },
     { path: '/trends', icon: TrendingUp, label: t('trends') },
+    { path: '/medicine-hub', icon: ShoppingCart, label: 'Medicine Hub' },
+    { path: '/hospital-locator', icon: MapPin, label: 'Hospitals' },
+    { path: '/insurance', icon: Shield, label: 'Insurance' },
   ];
 
   const toggleLanguage = () => {
@@ -73,8 +80,9 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             })}
           </nav>
 
-          {/* Language Toggle & Mobile Menu */}
-          <div className="flex items-center space-x-4">
+          {/* Controls */}
+          <div className="flex items-center space-x-2">
+            <ThemeToggle />
             <Button
               variant="outline"
               size="sm"
@@ -176,10 +184,15 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             <div className="space-y-3">
               <h4 className="font-semibold">Emergency</h4>
               <p className="text-sm text-muted-foreground">
-                For medical emergencies, call your local emergency services immediately.
+                For medical emergencies, call 108 for ambulance services.
               </p>
-              <Button variant="destructive" size="sm" className="w-full">
-                Emergency: 911
+              <Button 
+                variant="destructive" 
+                size="sm" 
+                className="w-full"
+                onClick={() => window.location.href = 'tel:108'}
+              >
+                Emergency: 108
               </Button>
             </div>
           </div>
